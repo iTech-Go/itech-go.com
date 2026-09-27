@@ -573,3 +573,23 @@ h1 .serif, h2 .serif { font-size: 1.08em; }
   .agent-node.n3 { left: 18%; } .agent-node.n4 { left: 82%; }
   .agent-node.n5 { left: 30%; } .agent-node.n6 { left: 70%; }
 }
+
+/* 3D hero layer ---------------------------------------------------------- */
+.hero-3d { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.hero-3d canvas { display: block; width: 100% !important; height: 100% !important; }
+.hero.has-3d .hero-orb.b { opacity: .55; }
+.hero.has-3d .agent-graph { display: none; }   /* 3D scene replaces the CSS diagram when active */
+.hero.has-3d .hero-grid { grid-template-columns: 1.05fr .95fr; }
+.hero.has-3d .hero-visual-3d-labels { position: relative; min-height: 420px; }
+.hero.has-3d .hero-visual-3d-labels .agent-node { position: absolute; }
+
+/* page-hero 3D: give the canvas room and keep text readable */
+.page-hero { position: relative; }
+.page-hero.has-3d { min-height: 420px; }
+.page-hero.has-3d .hero-orb { opacity: .5; }
+.page-hero.has-3d .container { position: relative; z-index: 1; }
+.page-hero.has-3d h1, .page-hero.has-3d .lead { text-shadow: 0 2px 24px var(--bg); }
+@media (min-width: 1100px) {
+  .page-hero.has-3d h1, .page-hero.has-3d .lead, .page-hero.has-3d .article-meta { max-width: 58%; }
+  .page-hero.has-3d .pill-row { max-width: 62%; }
+}
