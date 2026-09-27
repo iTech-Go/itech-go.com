@@ -20,11 +20,13 @@ SRC = ROOT / "src"
 SITE_URL = "https://itech-go.com"
 
 NAV = [
-    ("index", "Home"),
-    ("about", "About"),
+    ("ai-agents", "AI & Agents"),
     ("services", "Services"),
+    ("industries", "Industries"),
+    ("approach", "Approach"),
+    ("insights", "Insights"),
+    ("about", "About"),
     ("careers", "Careers"),
-    ("contact", "Contact"),
 ]
 
 
@@ -56,25 +58,29 @@ def nav_html(active: str) -> str:
 def build() -> list[str]:
     layout = (SRC / "layout.html").read_text(encoding="utf-8")
     built: list[str] = []
-    for frag in sorted((SRC / "pages").glob("*.html")):
+    for frag in sorted((SRC / "pages").rglob("*.html")):
         meta, body = parse_meta(frag.read_text(encoding="utf-8"))
-        slug = meta.get("slug", frag.stem)
+        rel = frag.relative_to(SRC / "pages").with_suffix("")
+        slug = meta.get("slug", rel.as_posix())
         out_name = f"{slug}.html"
         path = "/" if slug == "index" else f"/{out_name}"
+        nav_active = meta.get("nav", slug.split("/")[0])
         html = (
             layout.replace("{{title}}", meta.get("title", "iTech-Go"))
             .replace("{{description}}", meta.get("description", ""))
             .replace("{{canonical}}", SITE_URL + path)
             .replace("{{body_class}}", meta.get("body_class", f"page-{slug}"))
-            .replace("{{nav}}", nav_html(slug))
+            .replace("{{nav}}", nav_html(nav_active))
             .replace("{{year}}", str(date.today().year))
             .replace("{{content}}", body)
         )
-        (ROOT / out_name).write_text(html, encoding="utf-8")
+        out_path = ROOT / out_name
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(html, encoding="utf-8")
         built.append(out_name)
 
-    # sitemap: public pages only
-    public = [s for s, _ in NAV] + ["privacy", "terms"]
+    # sitemap: every built page except 404
+    public = [b[:-5] for b in built if b != "404.html"]
     today = date.today().isoformat()
     urls = "\n".join(
         f"  <url><loc>{SITE_URL}{'/' if s == 'index' else f'/{s}.html'}</loc>"

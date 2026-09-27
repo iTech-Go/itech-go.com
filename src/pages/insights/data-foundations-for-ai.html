@@ -1,0 +1,63 @@
+<!-- title: Your AI Is Only as Good as Your Data Platform | iTech-Go Insights -->
+<!-- description: The five data foundations iTech-Go checks before building any AI agent, the symptoms when they are missing, and how to fix them in weeks rather than years. -->
+<!-- nav: insights -->
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <span class="eyebrow">Data platforms</span>
+    <h1 style="max-width:18ch">Your AI is only as good as your <span class="serif">data platform.</span></h1>
+    <p class="article-meta">By the iTech-Go engineering team &middot; September 2026 &middot; 6 min read</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container article">
+    <p class="lead">When an AI pilot disappoints, the model is rarely the problem. Almost always, the agent couldn't reach the right data, the data disagreed with itself, or nobody could say which number was correct. Here are the five foundations we check before we build anything, and what to do when they're missing.</p>
+
+    <h2>1. Reachable</h2>
+    <p><strong>The question:</strong> Can an agent get to the data it needs through a governed interface, or is it locked in spreadsheets, email attachments, and a database only one person can query?</p>
+    <p><strong>Symptoms when missing:</strong> Every AI project starts with weeks of "getting access." Extracts are emailed around. The agent works in the demo on a hand-built file and fails in production.</p>
+    <p><strong>The fix:</strong> Land the core sources in a central platform, such as a lakehouse on S3 or a warehouse like Snowflake or Redshift, with automated ingestion. Expose them through a semantic layer or Model Context Protocol servers so agents and people use the same doors.</p>
+
+    <h2>2. Trustworthy</h2>
+    <p><strong>The question:</strong> If two systems disagree about a customer's balance, which one is right, and does the platform know?</p>
+    <p><strong>Symptoms when missing:</strong> Two dashboards, two numbers. Analysts spend their time reconciling. An agent picks one at random and confidently reports it.</p>
+    <p><strong>The fix:</strong> Define ownership per domain, implement data quality checks in the pipeline (freshness, completeness, referential integrity, business rules), and fail loudly when they break. Tools like dbt tests and pipeline-level assertions make this routine.</p>
+    <blockquote>An agent will act on bad data with exactly as much confidence as on good data. Quality checks are not a nice-to-have; they are the agent's immune system.</blockquote>
+
+    <h2>3. Defined</h2>
+    <p><strong>The question:</strong> Does "active customer" mean the same thing in every report and to every agent?</p>
+    <p><strong>Symptoms when missing:</strong> Metric drift. The AI assistant gives a revenue number that doesn't match the board deck, and trust collapses.</p>
+    <p><strong>The fix:</strong> A semantic layer: metrics and dimensions defined once, in code, and consumed everywhere. This is the single highest-leverage investment for analytics agents, because it lets the model translate a question into governed definitions rather than guessing at SQL.</p>
+
+    <h2>4. Fresh</h2>
+    <p><strong>The question:</strong> How old is the data when the agent reads it, and does that match the decision being made?</p>
+    <p><strong>Symptoms when missing:</strong> Nightly batches feeding a support agent that answers questions about today's orders. Or the opposite: expensive streaming for data nobody needs faster than daily.</p>
+    <p><strong>The fix:</strong> Match latency to the use case. Most agent workloads are fine with hourly or daily batch through Airflow or Step Functions. Where minutes matter, add Kafka or Kinesis for those specific streams. Don't pay for real-time everywhere.</p>
+
+    <h2>5. Permissioned</h2>
+    <p><strong>The question:</strong> When an agent answers a question for a user, does it only see what that user is allowed to see?</p>
+    <p><strong>Symptoms when missing:</strong> The pilot runs with an admin credential. Security halts the rollout. Rightly.</p>
+    <p><strong>The fix:</strong> Row- and column-level security in the platform, and agents that act on behalf of the user rather than as a super-user. Put the enforcement in the data layer and the tool layer, not in the prompt.</p>
+
+    <div class="callout">
+      <h3>The readiness scorecard we use</h3>
+      <p>Score each foundation from one to five for the specific data your first agent needs. Anything under three is a prerequisite, not a follow-up. In our experience, a focused four-to-eight-week effort on the gaps almost always pays back faster than a stalled AI program.</p>
+    </div>
+
+    <h2>Fixing gaps without a multi-year program</h2>
+    <p>The classic mistake is to conclude "we need a data transformation" and launch an eighteen-month platform initiative. You don't. Scope the foundation to the first agent's needs: two or three sources, one domain, one semantic model, quality checks on the fields that matter. Build that in weeks, ship the agent, and extend the platform as the next use case demands. The agent pays for the platform, and the platform makes the next agent cheap.</p>
+    <p>This is why our <a href="/services.html#data">data platform</a> and <a href="/ai-agents.html">AI</a> practices are one team. We check the foundations in the readiness sprint and fix what's needed as part of the pilot, so the AI investment lands on solid ground.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>Not sure your data is ready?</h2>
+      <p>The readiness sprint scores these five foundations against your first use case.</p>
+      <div class="actions"><a class="btn btn-primary btn-lg" href="/contact.html">Book a call</a><a class="btn btn-ghost btn-lg" href="/insights.html">More insights</a></div>
+    </div>
+  </div>
+</section>

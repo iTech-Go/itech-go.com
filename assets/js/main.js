@@ -80,7 +80,7 @@
       fetch('https://api.web3forms.com/submit', { method: 'POST', body: data, headers: { Accept: 'application/json' } })
         .then(function (r) { return r.json(); })
         .then(function (res) {
-          if (res.success) { form.reset(); say('Thanks — we received your message and will reply within one business day.', 'ok'); }
+          if (res.success) { form.reset(); say('Thanks — we received your message and will be in touch shortly.', 'ok'); }
           else { say(res.message || 'Something went wrong. Please email accounts@itech-go.com.', 'err'); }
         })
         .catch(function () { say('Network error. Please email accounts@itech-go.com.', 'err'); })

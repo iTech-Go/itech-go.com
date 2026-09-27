@@ -1,0 +1,79 @@
+<!-- title: What "Agentic AI" Means, and What It Doesn't | iTech-Go Insights -->
+<!-- description: A plain-language guide for leaders: how AI agents differ from chatbots and automation, the four capabilities that define them, where they create value today, and where they don't belong yet. -->
+<!-- nav: insights -->
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <span class="eyebrow">Agentic AI &middot; For leaders</span>
+    <h1 style="max-width:18ch">What "agentic AI" means, <span class="serif">and what it doesn't.</span></h1>
+    <p class="article-meta">By the iTech-Go engineering team &middot; September 2026 &middot; 8 min read</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container article">
+    <p class="lead">"Agentic" has become the word every vendor attaches to every product. Underneath the noise is a real and important shift in what software can do. This guide explains it without the hype, so you can judge where it belongs in your organization.</p>
+
+    <h2>Three generations of business software</h2>
+    <p>It helps to see agents as the third step in a progression.</p>
+    <ol>
+      <li><strong>Automation</strong> follows rules you write in advance. If an invoice is over a threshold, route it for approval. Reliable, rigid, and blind to anything the rules didn't anticipate.</li>
+      <li><strong>Assistants and chatbots</strong> understand language and generate responses. They answer questions and draft content, but they stop at the edge of the conversation. A person still has to go do the thing.</li>
+      <li><strong>Agents</strong> combine both. They understand a goal, make a plan, use tools to gather information and take actions across your systems, check their own results, and hand off to a person when they should.</li>
+    </ol>
+    <blockquote>An assistant tells you the vendor's invoice doesn't match the purchase order. An agent finds the mismatch, checks the receiving record, drafts the dispute, and asks you to approve sending it.</blockquote>
+
+    <h2>The four capabilities that make something an agent</h2>
+    <h3>1. Reasoning over a goal</h3>
+    <p>You give the agent an outcome, not a script. "Process this week's vendor invoices" rather than a flowchart of every step. The model breaks the goal into steps and adapts when a document is unusual.</p>
+    <h3>2. Tool use</h3>
+    <p>The agent can call your systems: query the warehouse, read a ticket, create a record, send a message. This is what separates agents from chat. Increasingly these connections are standardized through the <a href="/insights/mcp-for-enterprise.html">Model Context Protocol</a>, which gives every agent one governed way to reach your tools.</p>
+    <h3>3. Memory and context</h3>
+    <p>Agents carry context across steps and, when designed to, across sessions. They remember what they've already checked, what the policy says, and what happened last time a similar case came through.</p>
+    <h3>4. Self-checking and hand-off</h3>
+    <p>Good agents verify their own work against sources and rules, and they know when to stop and ask a human. This is not optional. It's the difference between a system you can trust and one you have to babysit.</p>
+
+    <h2>Where agents create value today</h2>
+    <p>The pattern that works is consistent: high volume, moderate complexity, clear rules for what "correct" means, and a person who owns the process today. Concretely:</p>
+    <ul>
+      <li><strong>Document-heavy workflows.</strong> Invoices, applications, permits, contracts, claims. Reading, extracting, validating, routing.</li>
+      <li><strong>Tier-one support.</strong> Internal IT and HR requests, customer questions with answers in your knowledge base.</li>
+      <li><strong>Data questions.</strong> "How did region three do last quarter versus plan?" answered from governed data with the query shown.</li>
+      <li><strong>Back-office coordination.</strong> Onboarding, reconciliation, compliance checks, reporting that touches several systems.</li>
+      <li><strong>Engineering toil.</strong> Test generation, code review, incident triage, legacy documentation.</li>
+    </ul>
+
+    <h2>Where agents don't belong yet</h2>
+    <p>Honesty here saves money. We steer clients away from agents when:</p>
+    <ul>
+      <li>The cost of a wrong action is severe and irreversible, and there is no practical approval step.</li>
+      <li>The underlying data is unreliable. An agent will confidently act on bad data. Fix the <a href="/insights/data-foundations-for-ai.html">data foundation</a> first.</li>
+      <li>The process is truly deterministic. Plain automation is cheaper and more predictable. Use the model only where judgment is needed.</li>
+      <li>Nobody owns the outcome. Agents need a business owner who defines success and reviews exceptions.</li>
+    </ul>
+
+    <div class="callout">
+      <h3>A quick test for any agent proposal</h3>
+      <p>Ask four questions. Is the volume high enough to matter? Can we write down what a correct result looks like? Can a person approve the risky steps without slowing everything down? Is the data the agent needs available and trustworthy? Four yeses is a strong candidate. Two or fewer is a research project.</p>
+    </div>
+
+    <h2>What "production-ready" actually requires</h2>
+    <p>A demo needs a prompt and a model. A production agent needs an evaluation set built from your real cases, so accuracy is a measured number rather than an impression. It needs scoped permissions, so it can only do what it should. It needs an audit log, so every action can be explained. It needs monitoring for cost, latency, and drift. And it needs an owner and a runbook, so when something changes, someone knows.</p>
+    <p>None of this is exotic. It's the same engineering discipline that makes any system trustworthy, applied to a new kind of component. It is also the part most pilots skip, which is why so many stall.</p>
+
+    <h2>How to start</h2>
+    <p>Pick one process using the test above. Assemble twenty to fifty real examples with known correct outcomes. Build the smallest agent that handles them, measure it, and put a person in the approval seat. In four to six weeks you will know whether it works, what it costs to run, and what it would take to scale. That is the whole point of a pilot: a decision backed by evidence.</p>
+    <p>If you'd like help scoring candidates, our two-week <a href="/approach.html">AI Readiness Sprint</a> exists for exactly that.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>Have a process in mind?</h2>
+      <p>Bring it to a 30-minute call. We'll tell you honestly whether an agent fits.</p>
+      <div class="actions"><a class="btn btn-primary btn-lg" href="/contact.html">Book a call</a><a class="btn btn-ghost btn-lg" href="/insights.html">More insights</a></div>
+    </div>
+  </div>
+</section>

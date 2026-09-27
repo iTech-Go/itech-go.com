@@ -451,3 +451,125 @@ p:last-child { margin-bottom: 0; }
 .site-footer .brand-logo { height: 30px; }
 [data-theme="dark"] .logo-light { display: none; }
 [data-theme="light"] .logo-dark { display: none; }
+
+/* ==========================================================================
+   v2 additions — AI / agentic positioning
+   ========================================================================== */
+:root { --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif; }
+.serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+h1 .serif, h2 .serif { font-size: 1.08em; }
+
+/* nav fits 7 items */
+.site-nav a { padding: .55rem .75rem; font-size: .93rem; }
+@media (max-width: 1100px) and (min-width: 901px) { .site-nav a { padding: .5rem .55rem; font-size: .88rem; } .nav-cta { display: none; } }
+
+/* Agent orchestration graphic ------------------------------------------- */
+.agent-graph { position: relative; width: 100%; aspect-ratio: 1 / .9; }
+.agent-graph svg { width: 100%; height: 100%; overflow: visible; }
+.agent-graph .edge { stroke: var(--border-strong); stroke-width: 1.5; fill: none; }
+.agent-graph .edge-flow { stroke: url(#g-flow); stroke-width: 2; fill: none; stroke-dasharray: 6 10; animation: flow 2.4s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -32; } }
+.agent-node {
+  position: absolute; transform: translate(-50%, -50%);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border: 1px solid var(--border-strong); border-radius: 14px; padding: .7rem .9rem;
+  box-shadow: var(--shadow); display: flex; align-items: center; gap: .6rem; font-size: .85rem; white-space: nowrap;
+  backdrop-filter: blur(6px);
+}
+.agent-node .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brand-grad); box-shadow: 0 0 0 4px var(--glow-b); flex: none; }
+.agent-node small { display: block; color: var(--muted); font-size: .72rem; }
+.agent-node.core { padding: 1rem 1.2rem; border-color: var(--brand); font-size: .95rem; }
+.agent-node.core .dot { animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 4px var(--glow-b); } 50% { box-shadow: 0 0 0 10px transparent; } }
+@media (max-width: 900px) { .agent-node { font-size: .75rem; padding: .5rem .65rem; } .agent-node.core { font-size: .85rem; } }
+
+/* Tech strip ------------------------------------------------------------- */
+.tech-strip { border-block: 1px solid var(--border); background: var(--bg-2); padding: 1.25rem 0; overflow: hidden; }
+.tech-strip .container { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+.tech-strip .label { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.tech-strip .logos { display: flex; gap: 1.75rem; flex-wrap: wrap; justify-content: center; }
+.tech-strip .logos span { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; color: var(--text-2); opacity: .8; letter-spacing: -.01em; }
+
+/* Offer cards (numbered, wide) ------------------------------------------ */
+.offer { display: grid; grid-template-columns: 64px 1fr auto; gap: 1.5rem; align-items: start; padding: 1.75rem 0; border-top: 1px solid var(--border); }
+.offer:last-child { border-bottom: 1px solid var(--border); }
+.offer .num { font-family: var(--font-serif); font-style: italic; font-size: 2rem; color: var(--brand-2); line-height: 1; }
+.offer h3 { font-size: 1.3rem; margin-bottom: .4rem; }
+.offer p { color: var(--text-2); max-width: 62ch; }
+.offer .tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .8rem; }
+.offer .btn { align-self: center; }
+@media (max-width: 800px) { .offer { grid-template-columns: 48px 1fr; } .offer .btn { grid-column: 2; justify-self: start; } }
+
+/* Big quote / statement ------------------------------------------------- */
+.statement { text-align: center; max-width: 900px; margin-inline: auto; }
+.statement h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.12; }
+.statement p { color: var(--text-2); font-size: 1.15rem; max-width: 60ch; margin-inline: auto; }
+
+/* Comparison table ------------------------------------------------------- */
+.compare { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; font-size: .97rem; }
+.compare th, .compare td { padding: 1rem 1.2rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+.compare th { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: var(--surface-2); }
+.compare tr:last-child td { border-bottom: 0; }
+.compare td:first-child { font-weight: 600; white-space: nowrap; }
+.compare td { color: var(--text-2); }
+@media (max-width: 720px) { .compare { display: block; overflow-x: auto; } }
+
+/* Timeline (engagement phases) ------------------------------------------ */
+.timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 14px; height: 2px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); opacity: .5; }
+.tl { position: relative; padding-top: 2.2rem; }
+.tl::before { content: ""; position: absolute; top: 6px; left: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--brand-grad); box-shadow: 0 0 0 4px var(--bg); }
+.tl h3 { font-size: 1.05rem; margin-bottom: .3rem; }
+.tl .when { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--brand-2); display: block; margin-bottom: .4rem; }
+.tl p { color: var(--text-2); font-size: .93rem; }
+@media (max-width: 900px) { .timeline { grid-template-columns: 1fr; } .timeline::before { left: 8px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; } .tl { padding: 0 0 1.5rem 2.2rem; } .tl::before { left: 0; top: 4px; } }
+
+/* Insights ---------------------------------------------------------------- */
+.post-card { display: flex; flex-direction: column; }
+.post-card .kicker { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--brand-2); margin-bottom: .6rem; }
+.post-card h3 { font-size: 1.25rem; margin: 0 0 .5rem; }
+.post-card .meta { margin-top: auto; padding-top: 1rem; color: var(--muted); font-size: .85rem; }
+.article { max-width: 760px; }
+.article .lead { font-size: 1.25rem; }
+.article h2 { font-size: 1.6rem; margin-top: 2.4rem; }
+.article h3 { font-size: 1.2rem; margin-top: 1.8rem; }
+.article p, .article li { color: var(--text-2); font-size: 1.05rem; line-height: 1.75; }
+.article ul, .article ol { padding-left: 1.4rem; margin: 0 0 1.2rem; }
+.article ul { list-style: disc; } .article ol { list-style: decimal; }
+.article li { margin-bottom: .5rem; }
+.article blockquote { margin: 2rem 0; padding: 1.2rem 1.5rem; border-left: 3px solid var(--brand); background: var(--surface); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; color: var(--text); }
+.article .callout { background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 1.4rem 1.6rem; margin: 2rem 0; }
+.article .callout h3 { margin-top: 0; }
+.article-meta { color: var(--muted); font-size: .9rem; margin-bottom: 1.5rem; }
+.article pre { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem 1.2rem; overflow-x: auto; font-size: .9rem; color: var(--text); }
+.article code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; }
+
+/* Industry cards --------------------------------------------------------- */
+.industry { padding: 2rem; }
+.industry h3 { font-size: 1.35rem; }
+.industry .uses { margin-top: 1rem; }
+.industry .uses li { font-size: .95rem; }
+
+/* misc */
+.pill-row { display: flex; gap: .5rem; flex-wrap: wrap; }
+.mt-2 { margin-top: 2rem; }
+
+/* agent graph node positions (desktop) + mobile overrides */
+.agent-node.n0 { left: 50%; top: 50%; }
+.agent-node.n1 { left: 20%; top: 13%; }
+.agent-node.n2 { left: 80%; top: 13%; }
+.agent-node.n3 { left: 14%; top: 67%; }
+.agent-node.n4 { left: 86%; top: 67%; }
+.agent-node.n5 { left: 28%; top: 91%; }
+.agent-node.n6 { left: 72%; top: 91%; }
+@media (max-width: 900px) {
+  .hero { overflow: hidden; }
+  .agent-graph { aspect-ratio: 1 / 1; margin-top: 2rem; }
+  .agent-node small { display: none; }
+  .agent-node { padding: .45rem .6rem; font-size: .74rem; }
+  .agent-node.core { padding: .7rem .9rem; font-size: .8rem; }
+  .agent-node.core small { display: block; font-size: .65rem; }
+  .agent-node.n1 { left: 24%; } .agent-node.n2 { left: 76%; }
+  .agent-node.n3 { left: 18%; } .agent-node.n4 { left: 82%; }
+  .agent-node.n5 { left: 30%; } .agent-node.n6 { left: 70%; }
+}

@@ -1,0 +1,76 @@
+<!-- title: Model Context Protocol: The USB-C of Enterprise AI | iTech-Go Insights -->
+<!-- description: What the Model Context Protocol (MCP) is, why it matters for governing how AI agents reach enterprise tools and data, and how to adopt it incrementally without rewriting your systems. -->
+<!-- nav: insights -->
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <span class="eyebrow">Architecture</span>
+    <h1 style="max-width:18ch">Model Context Protocol: the <span class="serif">USB-C</span> of enterprise AI.</h1>
+    <p class="article-meta">By the iTech-Go engineering team &middot; September 2026 &middot; 7 min read</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container article">
+    <p class="lead">Every AI agent needs to reach your systems: the warehouse, the ticketing tool, the ERP, the document store. Until recently, every project wired those connections by hand, differently each time. The Model Context Protocol changes that, and the change matters more for governance than for convenience.</p>
+
+    <h2>The problem MCP solves</h2>
+    <p>Imagine three teams each building an agent. One needs customer records, one needs invoices, one needs both. Without a standard, each team writes its own connector, with its own authentication, its own logging, and its own idea of what the agent is allowed to do. Six months later you have a dozen bespoke integrations, no single view of what agents can access, and a security team that is right to be nervous.</p>
+    <p>MCP is an open standard, originally published by Anthropic and now supported across the major AI platforms, that defines how a model-driven application discovers and calls external tools and data. One server exposes a system's capabilities once. Any compliant agent, using any compliant model, can then use it.</p>
+    <blockquote>Before USB, every device had its own plug. MCP is the moment enterprise AI gets a standard port.</blockquote>
+
+    <h2>How it works, briefly</h2>
+    <p>An <strong>MCP server</strong> sits in front of a system and publishes three kinds of things:</p>
+    <ul>
+      <li><strong>Tools</strong>: actions the agent can take, such as <code>lookup_customer</code> or <code>create_ticket</code>, each with a typed schema.</li>
+      <li><strong>Resources</strong>: data the agent can read, such as a document, a table, or a report.</li>
+      <li><strong>Prompts</strong>: reusable instructions for common tasks against that system.</li>
+    </ul>
+    <p>An <strong>MCP client</strong>, inside the agent, connects to one or more servers, discovers what they offer, and calls them as the model decides. The model never touches your database directly. It asks the server, and the server enforces the rules.</p>
+
+    <h2>Why this is a governance story</h2>
+    <p>The convenience is real, but the strategic value is control. Because every agent reaches your systems through the same layer, that layer becomes the natural place to enforce policy:</p>
+    <ul>
+      <li><strong>Authentication and authorization</strong> in one place, mapped to the user or service the agent acts for.</li>
+      <li><strong>Allow-lists.</strong> The server decides which tools exist at all. If there is no <code>delete_customer</code> tool, no agent can delete a customer, however it is prompted.</li>
+      <li><strong>Audit.</strong> Every call is logged with who, what, when, and the parameters, giving you a complete record of agent activity.</li>
+      <li><strong>Rate and cost limits</strong> per agent, per system.</li>
+      <li><strong>Model independence.</strong> Swap the model provider and every integration keeps working.</li>
+    </ul>
+
+    <div class="callout">
+      <h3>A pattern we use often</h3>
+      <p>Build one MCP server per system of record, owned by the team that owns that system. They decide what is exposed and how it is logged. Agent teams consume the servers and never write direct integrations. Security reviews the servers once instead of every agent.</p>
+    </div>
+
+    <h2>Adopting MCP without a rewrite</h2>
+    <p>You do not need to change your existing systems. An MCP server is a thin adapter that wraps APIs you already have. A practical sequence:</p>
+    <ol>
+      <li><strong>Start with read-only.</strong> Expose the two or three data sources your first agent needs as resources and read tools. Low risk, immediate value.</li>
+      <li><strong>Add narrowly scoped actions.</strong> Introduce write tools one at a time, each with a clear schema and, where needed, an approval requirement enforced by the server.</li>
+      <li><strong>Centralize logging.</strong> Ship every tool call to the same observability stack you use for everything else.</li>
+      <li><strong>Standardize ownership.</strong> Each server has a named owner and a change process, like any production API.</li>
+    </ol>
+
+    <h2>What to watch for</h2>
+    <ul>
+      <li><strong>Over-exposure.</strong> The temptation is to expose everything. Expose what agents need, and add more when a use case justifies it.</li>
+      <li><strong>Identity.</strong> Decide early whether agents act as a service identity or on behalf of a user, and make the server enforce it. Most enterprise cases need the latter.</li>
+      <li><strong>Untrusted content.</strong> Data returned through tools can contain text that tries to steer the model. Treat tool output as data, never as instructions, and test for it.</li>
+    </ul>
+
+    <h2>The bottom line</h2>
+    <p>MCP turns agent integration from a craft into infrastructure. For a leader, that means agents can be added faster, governed consistently, and moved between models as the market shifts. For an engineer, it means writing a connector once and being done. We build MCP servers for our clients' core systems as a standard part of every <a href="/ai-agents.html">agent engagement</a>, and we would rather you own that layer than any vendor.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>Want your systems agent-ready?</h2>
+      <p>We can scope the MCP servers for your core systems in a two-week readiness sprint.</p>
+      <div class="actions"><a class="btn btn-primary btn-lg" href="/contact.html">Book a call</a><a class="btn btn-ghost btn-lg" href="/insights.html">More insights</a></div>
+    </div>
+  </div>
+</section>
