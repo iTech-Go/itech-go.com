@@ -1,11 +1,11 @@
 /* iTech-Go — 3D hero: animated node network (Three.js, loaded from CDN).
-   Loads only when: WebGL available, no reduced-motion preference.
+   Loads when WebGL is available; under prefers-reduced-motion it renders a single static frame.
    Renders behind the hero content as a transparent layer. */
 (async function () {
   'use strict';
   var hero = document.querySelector('.hero');
   if (!hero) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var STILL = window.matchMedia('(prefers-reduced-motion: reduce)').matches; // reduced motion: render one static frame
   var probe = document.createElement('canvas');
   if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) return;
 
@@ -147,8 +147,8 @@
 
   var clock = new THREE.Clock();
   function frame() {
-    requestAnimationFrame(frame);
-    if (!visible || document.hidden) return;
+    if (!STILL) requestAnimationFrame(frame);
+    if (!STILL && (!visible || document.hidden)) return;
     var dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
     current.x += (target.x - current.x) * 0.05; current.y += (target.y - current.y) * 0.05;
     group.rotation.y = t * 0.08 + current.x;
@@ -167,6 +167,7 @@
     pulseGeo.attributes.position.needsUpdate = true;
     renderer.render(scene, camera);
   }
+  if (STILL) { group.rotation.y = 0.6; group.rotation.x = 0.15; }
   frame();
   hero.classList.add('has-3d');
 })();

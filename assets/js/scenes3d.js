@@ -5,7 +5,7 @@
   'use strict';
   var hero = document.querySelector('.page-hero[data-scene]');
   if (!hero) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var STILL = window.matchMedia('(prefers-reduced-motion: reduce)').matches; // reduced motion: render one static frame
   var probe = document.createElement('canvas');
   if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) return;
 
@@ -222,9 +222,9 @@
 
   var clock = new THREE.Clock();
   (function frame() {
-    requestAnimationFrame(frame);
-    if (!visible || document.hidden) return;
-    var dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
+    if (!STILL) requestAnimationFrame(frame);
+    if (!STILL && (!visible || document.hidden)) return;
+    var dt = Math.min(clock.getDelta(), 0.05), t = STILL ? 1.7 : clock.elapsedTime;
     cur.x += (target.x - cur.x) * 0.05; cur.y += (target.y - cur.y) * 0.05;
     scene.rotation.y = cur.x; scene.rotation.x = cur.y;
     update(t, dt);
