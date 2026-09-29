@@ -580,6 +580,7 @@ h1 .serif, h2 .serif { font-size: 1.08em; }
 .hero.has-3d .hero-orb.b { opacity: .55; }
 .hero.has-3d .agent-graph { display: none; }   /* 3D scene replaces the CSS diagram when active */
 .hero.has-3d .hero-grid { grid-template-columns: 1.05fr .95fr; }
+@media (max-width: 900px) { .hero.has-3d .hero-grid { grid-template-columns: 1fr; } .hero.has-3d .hero-orb.b { opacity: .35; } }
 .hero.has-3d .hero-visual-3d-labels { position: relative; min-height: 420px; }
 .hero.has-3d .hero-visual-3d-labels .agent-node { position: absolute; }
 
@@ -695,8 +696,9 @@ h1 .serif, h2 .serif { font-size: 1.08em; }
 @media (max-width: 1100px) { .iso-stack { height: 400px; } .iso-plane { transform: translate3d(-16%, var(--iso-y, 0px), 0) rotateX(calc(50deg + var(--tilt-x, 0deg))) rotateZ(calc(-28deg + var(--tilt-z, 0deg))) scale(.85); } }
 @media (max-width: 900px) {
   .hero-iso-grid { grid-template-columns: 1fr; }
-  .iso-stack { height: 340px; margin-top: 1rem; overflow: visible; }
-  .iso-plane { transform: translate3d(-10%, 0, 0) rotateX(50deg) rotateZ(-28deg) scale(.72); transform-origin: 50% 45%; }
+  .iso-stack { height: 360px; margin-top: 1.5rem; overflow: visible; }
+  .iso-plane { inset: auto; left: 50%; top: 0; width: 560px; height: 460px; margin-left: -280px; transform: rotateX(50deg) rotateZ(-28deg) scale(.78); transform-origin: 50% 0; }
 }
-@media (max-width: 480px) { .iso-stack { height: 230px; margin-top: .25rem; } .iso-plane { transform: translate3d(-6%, -18%, 0) rotateX(50deg) rotateZ(-28deg) scale(.55); transform-origin: 50% 30%; } }
+@media (max-width: 480px) { .iso-stack { height: 300px; margin-top: 1.25rem; } .iso-plane { transform: translate3d(-58px, 120px, 0) rotateX(50deg) rotateZ(-28deg) scale(.56); } }
+@media (max-width: 700px) { .hero-3d { opacity: .6; } }
 @media (prefers-reduced-motion: reduce) { .iso-card { opacity: 1; transform: translateZ(var(--z, 0px)); } .ic-ring .v { stroke-dashoffset: 3.7; } }

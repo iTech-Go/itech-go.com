@@ -1,12 +1,11 @@
 /* iTech-Go — 3D hero: animated node network (Three.js, loaded from CDN).
-   Loads only when: WebGL available, viewport >= 700px, no reduced-motion preference.
+   Loads only when: WebGL available, no reduced-motion preference.
    Renders behind the hero content as a transparent layer. */
 (async function () {
   'use strict';
   var hero = document.querySelector('.hero');
   if (!hero) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.innerWidth < 700) return;
   var probe = document.createElement('canvas');
   if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) return;
 
@@ -21,7 +20,7 @@
   hero.insertBefore(wrap, hero.firstChild);
 
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 900 ? 1.5 : 2)); // lighter on phones
   renderer.setClearColor(0x000000, 0);
   wrap.appendChild(renderer.domElement);
 
