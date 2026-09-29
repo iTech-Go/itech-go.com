@@ -44,6 +44,34 @@
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
 
+  // Isometric hero: scroll drift + cursor tilt ----------------------------
+  var isoHero = document.querySelector('.hero-iso');
+  var isoPlane = isoHero && isoHero.querySelector('.iso-plane');
+  if (isoPlane && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 900) {
+    var isoTicking = false;
+    function isoScroll() {
+      if (isoTicking) return;
+      isoTicking = true;
+      requestAnimationFrame(function () {
+        var y = Math.min(window.scrollY, 700) * -0.12;
+        isoPlane.style.setProperty('--iso-y', y.toFixed(1) + 'px');
+        isoTicking = false;
+      });
+    }
+    window.addEventListener('scroll', isoScroll, { passive: true });
+    isoHero.addEventListener('mousemove', function (e) {
+      var r = isoHero.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5;   // -0.5 .. 0.5
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      isoPlane.style.setProperty('--tilt-x', (py * -5).toFixed(2) + 'deg');
+      isoPlane.style.setProperty('--tilt-z', (px * 6).toFixed(2) + 'deg');
+    });
+    isoHero.addEventListener('mouseleave', function () {
+      isoPlane.style.setProperty('--tilt-x', '0deg');
+      isoPlane.style.setProperty('--tilt-z', '0deg');
+    });
+  }
+
   // Forms (Web3Forms) -----------------------------------------------------
   // Set data-key on the <form> to your Web3Forms access key (free at web3forms.com).
   // Until a key is set, submissions fall back to opening the user's mail client.

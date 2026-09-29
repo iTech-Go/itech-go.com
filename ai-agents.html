@@ -95,15 +95,58 @@
 </header>
 
 <main id="main">
-<section class="page-hero" data-scene="rings">
+<section class="page-hero hero-iso">
   <div class="hero-bg"></div>
   <div class="hero-orb a"></div>
-  <div class="container">
-    <span class="eyebrow">AI &amp; agentic systems</span>
-    <h1>Agents that do real work, <span class="serif">safely.</span></h1>
-    <p class="lead">An agent is software that can read, reason, decide, and act across your systems. Done well, it removes whole categories of manual work. Done badly, it's an expensive demo. We build the first kind.</p>
-    <div class="pill-row" style="margin-top:1.5rem">
-      <a class="chip" href="#use-cases">Use cases</a><a class="chip" href="#build">What we build</a><a class="chip" href="#stack">Architecture</a><a class="chip" href="#governance">Governance</a><a class="chip" href="#faq">FAQ</a>
+  <div class="hero-orb b"></div>
+  <div class="container hero-iso-grid">
+    <div>
+      <span class="eyebrow">AI &amp; agentic systems</span>
+      <h1>Agents that do real work, <span class="serif">safely.</span></h1>
+      <p class="lead">An agent is software that can read, reason, decide, and act across your systems. Done well, it removes whole categories of manual work. Done badly, it's an expensive demo. We build the first kind.</p>
+      <div class="pill-row" style="margin-top:1.5rem">
+        <a class="chip" href="#use-cases">Use cases</a><a class="chip" href="#build">What we build</a><a class="chip" href="#stack">Architecture</a><a class="chip" href="#governance">Governance</a><a class="chip" href="#faq">FAQ</a>
+      </div>
+    </div>
+
+    <div class="iso-stack" aria-hidden="true">
+      <div class="iso-plane">
+        <div class="iso-card ic-run">
+          <div class="ic-head"><span class="ic-dot live"></span>Orchestrator &middot; run #4821</div>
+          <ul class="ic-steps">
+            <li class="done">Read intake form</li>
+            <li class="done">Look up account in CRM</li>
+            <li class="active">Validate against policy</li>
+            <li>Draft reply for review</li>
+          </ul>
+        </div>
+        <div class="iso-card ic-tools">
+          <div class="ic-head">Tool calls</div>
+          <div class="ic-row"><span class="ic-tag">crm.lookup</span><span class="ic-ms">142 ms</span></div>
+          <div class="ic-row"><span class="ic-tag">docs.search</span><span class="ic-ms">318 ms</span></div>
+          <div class="ic-row"><span class="ic-tag">policy.check</span><span class="ic-ms">96 ms</span></div>
+        </div>
+        <div class="iso-card ic-eval">
+          <div class="ic-head">Eval suite</div>
+          <div class="ic-eval-body">
+            <svg class="ic-ring" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.5"/><circle class="v" cx="18" cy="18" r="15.5"/></svg>
+            <div><strong>96.2%</strong><small>1,204 / 1,251 cases pass</small></div>
+          </div>
+        </div>
+        <div class="iso-card ic-guard">
+          <div class="ic-head">Guardrails</div>
+          <div class="ic-chips"><span>PII redaction</span><span>Spend limit</span><span>Human approval</span></div>
+        </div>
+        <div class="iso-card ic-audit">
+          <div class="ic-head">Audit log</div>
+          <pre class="ic-log">14:02:11  tool  crm.lookup   ok
+14:02:11  tool  docs.search  ok
+14:02:12  gate  approval     pending</pre>
+        </div>
+        <svg class="iso-links" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M30 40 L62 26"/><path d="M30 40 L28 72"/><path d="M30 40 L70 62"/><path d="M62 26 L70 62"/>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
