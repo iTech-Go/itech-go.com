@@ -11,6 +11,7 @@ Run:  python3 build.py
 """
 from __future__ import annotations
 
+import hashlib
 import re
 from datetime import date
 from pathlib import Path
@@ -28,6 +29,20 @@ NAV = [
     ("about", "About"),
     ("careers", "Careers"),
 ]
+
+
+ASSET_RE = re.compile(r'(?P<attr>(?:href|src)=")(?P<path>/assets/(?:css|js)/[^"?]+)(?P<q>\?[^"]*)?"')
+
+
+def stamp_assets(html: str) -> str:
+    """Append ?v=<content-hash> to local CSS/JS URLs so browsers pick up new builds."""
+    def repl(m: re.Match) -> str:
+        f = ROOT / m.group("path").lstrip("/")
+        if not f.exists():
+            return m.group(0)
+        h = hashlib.sha1(f.read_bytes()).hexdigest()[:8]
+        return f'{m.group("attr")}{m.group("path")}?v={h}"'
+    return ASSET_RE.sub(repl, html)
 
 
 def parse_meta(text: str) -> tuple[dict, str]:
@@ -74,6 +89,7 @@ def build() -> list[str]:
             .replace("{{year}}", str(date.today().year))
             .replace("{{content}}", body)
         )
+        html = stamp_assets(html)
         out_path = ROOT / out_name
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(html, encoding="utf-8")
